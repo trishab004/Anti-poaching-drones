@@ -1,0 +1,31 @@
+import cv2
+import numpy as np
+
+# Open the infrared camera (replace '0' with the camera index if it's not the default camera)
+cap = cv2.VideoCapture(0)
+
+while True:
+    # Capture a frame from the infrared camera
+    ret, frame = cap.read()
+
+    # Check if the frame was successfully captured
+    if not ret:
+        print("Failed to capture frame")
+        break
+
+    # Convert the frame to grayscale (assuming it's an infrared image)
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # Perform detection or processing on the infrared frame
+    # (You can add your detection or processing code here)
+
+    # Display the infrared frame
+    cv2.imshow("Infrared Camera", gray_frame)
+
+    # Break the loop if 'q' is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Release the camera and close all OpenCV windows
+cap.release()
+cv2.destroyAllWindows()
