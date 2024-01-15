@@ -1,0 +1,15 @@
+from dronekit import connect, VehicleMode
+
+# Connect to the vehicle (replace 'udp:127.0.0.1:14550' with the connection string of your drone)
+vehicle = connect('udp:127.0.0.1:14550', wait_ready=True)
+
+# Arm the drone
+print("Arming motors")
+vehicle.mode = VehicleMode("GUIDED")
+vehicle.armed = True
+
+while not vehicle.armed:
+    print("Waiting for arming...")
+    time.sleep(1)
+
+print("Drone armed and ready to take off.")
